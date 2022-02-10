@@ -94,7 +94,7 @@ namespace PGGE.Mutliplayer{
             {
                 //SceneManager.LoadScene("MultiplayerScene1");
                 Debug.Log("We load the default room for multiplayer");
-                PhotonNetwork.LoadLevel("MultiplayerScene1");
+                PhotonNetwork.LoadLevel("MultiplayerMap");
             }
         }
 

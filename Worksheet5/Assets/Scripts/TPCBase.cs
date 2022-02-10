@@ -24,7 +24,7 @@ public abstract class TPCBase
         Vector3 playPos = playerTransform.position;
         //Debug.Log(playPos);
         Vector3 dirPlayerToCamera = (cameraPos - playPos);
-        Debug.Log(dirPlayerToCamera);
+        //Debug.Log(dirPlayerToCamera);
         RaycastHit hit;
 
         if (Physics.Raycast(playPos, dirPlayerToCamera, out hit,1))
@@ -36,7 +36,7 @@ public abstract class TPCBase
         {
             distance = maxDist;
         }
-        Debug.Log(distance);
+        //Debug.Log(distance);
     }
 
     public abstract void Tick();

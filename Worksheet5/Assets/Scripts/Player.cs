@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using PGGE.Patterns;
+using Photon.Pun;
 
 public class Player : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour
     public int[] RoundsPerSecond = new int[3];
     bool[] mFiring = new bool[3];
 
+    private PhotonView mPhotomView;
 
     // Start is called before the first frame update
     void Start()
@@ -46,9 +48,27 @@ public class Player : MonoBehaviour
         mFsm.Add(new PlayerState_ATTACK(this));
         mFsm.Add(new PlayerState_RELOAD(this));
         mFsm.SetCurrentState((int)PlayerStateType.MOVEMENT);
+
+        mPhotomView = gameObject.GetComponent<PhotonView>();
     }
 
-    void Update()
+    private void Update()
+    {
+        if(mPhotomView == null)
+        {
+            Update_Internal();
+            return;
+        }
+        else
+        {
+            if(mPhotomView.IsMine == true)
+            {
+                Update_Internal();
+            }
+        }
+    }
+
+    void Update_Internal()
     {
         mFsm.Update();
         Aim();

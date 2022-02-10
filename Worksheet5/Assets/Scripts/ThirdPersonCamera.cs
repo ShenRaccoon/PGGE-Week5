@@ -11,6 +11,7 @@ public enum CameraType
     Follow_Track_Pos_Rot,
     Topdown,
     Follow_Independent,
+    TRACKPOSITIONROTATION,
 }
 
 public class ThirdPersonCamera : MonoBehaviour
@@ -68,6 +69,9 @@ public class ThirdPersonCamera : MonoBehaviour
 
     private void Update()
     {
+        if (mPlayer == null)
+            return;
+
         // Update the game constant parameters every frame 
         // so that changes applied on the editor can be reflected
         CameraConstants.Damping = mDamping;
